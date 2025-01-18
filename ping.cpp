@@ -258,7 +258,7 @@ void ping(const char *name, int count, int interval_ms, int size, int timeout_ms
     ping_start(adr, count, interval_ms, size, timeout_ms);
 }
 
-bool ping_start(struct ping_option *ping_o) { return ping_start(ping_o->ip, ping_o->count, ping_o->interval_ms, ping_o->size, pint_o->timeout_ms, ping_o); }
+bool ping_start(struct ping_option *ping_o) { return ping_start(ping_o->ip, ping_o->count, ping_o->interval_ms, ping_o->size, ping_o->timeout_ms, ping_o); }
 
 bool ping_start(IPAddress adr, int count = 0, int interval_ms = 0, int size = 0, int timeout_ms = 0, struct ping_option *ping_o) {
     //	driver_error_t *error;
