@@ -23,7 +23,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
 
-//extern "C" {
+// extern "C" {
 #include <ping.h>
 //}
 
@@ -34,7 +34,7 @@
 #endif
 
 #ifdef __cplusplus
-extern "C"{
+extern "C" {
 #endif
 
 void esp_schedule(void);
@@ -45,16 +45,20 @@ void esp_yield(void);
 #endif
 
 class PingClass {
-public:
+  public:
     PingClass();
 
     bool ping(IPAddress dest, byte count = 5);
 
     bool ping(const char *host, byte count = 5);
 
+    bool pingMs(IPAddress dest, byte count = 5, int timeout_ms = 1000, int size = 32, int interval_ms = 1000);
+
+    bool pingMs(const char *host, byte count = 5, int timeout_ms = 1000, int size = 32, int interval_ms = 1000);
+
     float averageTime();
 
-protected:
+  protected:
     static void _ping_sent_cb(void *opt, void *pdata);
 
     static void _ping_recv_cb(void *opt, void *pdata);
@@ -65,7 +69,6 @@ protected:
     static byte _expected_count, _errors, _success;
     static float _avg_time;
 };
-
 
 extern PingClass Ping;
 

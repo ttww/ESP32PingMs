@@ -1,6 +1,10 @@
 # ESP32Ping
 Let the ESP32Ping ping a remote machine.
 
+## WIP: 2025.01.18/tw:
+This fork adds an ping with ms options in a compatible way. The orgiginal method is the same,
+but an PingMs() is added.
+
 #Note that this is a port from https://github.com/dancol90/ESP8266Ping
 With this library an ESP32Ping can ping a remote machine and know if it's reachable.
 It provide some basic measurements on ping messages (avg response time).
