@@ -1,6 +1,11 @@
 # ESP32Ping
 Let the ESP32Ping ping a remote machine.
 
+This fork adds an ping with ms options in a compatible way. The original method is the same,
+but an PingMs() is added.
+tw: I did a fork of the original ESP32Ping lib at version 1.7. I renamed this to ESP32PingMs which is fully compatible (drop in replacement).
+The new functionality is available with the PingMs() call, see below.
+
 #Note that this is a port from https://github.com/dancol90/ESP8266Ping
 With this library an ESP32Ping can ping a remote machine and know if it's reachable.
 It provide some basic measurements on ping messages (avg response time).
@@ -39,9 +44,19 @@ After `Ping.ping()` has been called, the average response time (in milliseconds)
 ```Arduino
 float avg_time_ms = Ping.averageTime();
 ```
-## Fixed in 1.3
-Memory leak bug ( https://github.com/marian-craciunescu/ESP32Ping/issues/4 )
-## Fixed in 1.4
-averageTime changed from `int` to `float`.Expect the code to still work , but you should upgrade 
-## Fixed in 1.5
-Fixed counters data. (Any review and testing is welcomed)
+
+These is the "old" compatibility layer with defaults (timeout 1 second, interval 1 second, count 3, size 32)
+
+## Update for ESP32PingMs:
+
+The new method for doing pings with millisecond timing is:
+
+```Arduino
+bool PingClass::pingMs(IPAddress dest, byte count, int timeout_ms, int size, int interval_ms);
+```
+
+So for doing a single ping with 50 ms timeout you can do:
+
+```Arduino
+bool ret = Ping.pingMs(ip_or_host, 1, 50);
+```
